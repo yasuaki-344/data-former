@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using ConsoleAppFramework;
+using DataFormer.ApplicationCore.Interfaces;
+using DataFormer.ApplicationCore.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -20,6 +22,7 @@ namespace DataFormer.ConsoleApp
                 .ConfigureServices((context, services) =>
                 {
                     // Dependency injection setting
+                    services.AddScoped<IExcelDataExtractService, ExcelDataExtractService>();
                 })
                 .RunConsoleAppFrameworkAsync<ApplicationLogic>(args);
         }
@@ -28,16 +31,20 @@ namespace DataFormer.ConsoleApp
     public class ApplicationLogic : ConsoleAppBase
     {
         private readonly ILogger<ApplicationLogic> _logger;
+        private readonly IExcelDataExtractService _extractor;
 
         /// <summary>
         /// Initializes a new instance of ApplicationLogic class.
         /// </summary>
-        /// <param name="logger">logger object</param>
+        /// <param name="logger">Logger object</param>
+        /// <param name="extractor">Excel cell data extract object</param>
         public ApplicationLogic(
-            ILogger<ApplicationLogic> logger
+            ILogger<ApplicationLogic> logger,
+            IExcelDataExtractService extractor
         )
         {
             _logger = logger;
+            _extractor = extractor;
         }
 
         [Command("xlsx", "extract data from excel file")]
