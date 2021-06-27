@@ -16,7 +16,16 @@ namespace DataFormer.ApplicationCore.Services
         /// <inheritdoc/>
         public DateTime? ReadDateTime(ISheet sheet, int rowIndex, int columnIndex)
         {
-            throw new NotImplementedException();
+            var row = sheet.GetRow(rowIndex);
+            if (row != null)
+            {
+                var cell = row.GetCell(columnIndex);
+                return cell != null ? cell.DateCellValue : null;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         /// <inheritdoc/>
