@@ -2,7 +2,7 @@
 using DataFormer.ApplicationCore.Interfaces;
 using NPOI.SS.UserModel;
 
-namespace DataFormer.ApplicationCore.Services
+namespace DataFormer.ApplicationCore.BusinessLogics
 {
     public class ExcelDataExtractService : IExcelDataExtractService
     {

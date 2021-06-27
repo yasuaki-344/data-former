@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using ConsoleAppFramework;
+using DataFormer.ApplicationCore.BusinessLogics;
 using DataFormer.ApplicationCore.Interfaces;
 using DataFormer.ApplicationCore.Services;
 using Microsoft.Extensions.Configuration;
