@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using DataFormer.ApplicationCore.Interfaces;
 using NPOI.SS.UserModel;
 
@@ -22,7 +22,16 @@ namespace DataFormer.ApplicationCore.Services
         /// <inheritdoc/>
         public string? ReadLabel(ISheet sheet, int rowIndex, int columnIndex)
         {
-            throw new NotImplementedException();
+            var row = sheet.GetRow(rowIndex);
+            if (row != null)
+            {
+                var cell = row.GetCell(columnIndex);
+                return cell != null ? cell.StringCellValue : null;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         /// <inheritdoc/>
