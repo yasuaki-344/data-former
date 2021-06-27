@@ -30,6 +30,6 @@ namespace DataFormer.ApplicationCore.Interfaces
         /// <param name="rowIndex">Row index of cell</param>
         /// <param name="columnIndex">Column index of cell</param>
         /// <returns>Return cell value if cell exists, otherwise null</returns>
-        double? ReadValue(ISheet sheet, int rowIndex, int columnIndex);
+        double? ReadNumeric(ISheet sheet, int rowIndex, int columnIndex);
     }
 }

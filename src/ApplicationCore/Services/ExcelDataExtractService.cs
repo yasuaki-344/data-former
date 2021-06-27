@@ -25,9 +25,19 @@ namespace DataFormer.ApplicationCore.Services
             throw new NotImplementedException();
         }
 
-        public double? ReadValue(ISheet sheet, int rowIndex, int columnIndex)
+        /// <inheritdoc/>
+        public double? ReadNumeric(ISheet sheet, int rowIndex, int columnIndex)
         {
-            throw new NotImplementedException();
+            var row = sheet.GetRow(rowIndex);
+            if (row != null)
+            {
+                var cell = row.GetCell(columnIndex);
+                return cell != null ? cell.NumericCellValue : null;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }
