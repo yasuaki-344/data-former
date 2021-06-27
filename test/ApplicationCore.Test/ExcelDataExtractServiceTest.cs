@@ -1,5 +1,6 @@
 ﻿using System;
-using DataFormer.ApplicationCore.Services;
+using DataFormer.ApplicationCore.BusinessLogics;
+using DataFormer.ApplicationCore.ValueObjects;
 using NPOI.XSSF.UserModel;
 using Xunit;
 
@@ -102,6 +103,43 @@ namespace DataFormer.ApplicationCore.Test
             var target = new ExcelDataExtractService();
             var actual = target.ReadNumeric(sheet, rowIndex, columnIndex);
             Assert.Null(actual);
+        }
+
+        [Fact]
+        public void Test()
+        {
+            var target = new ExcelDataExtractService();
+
+            var rule = new SearchRule
+            {
+                Direction = SearchDirection.Row,
+                InitialRowPostion = 0,
+                InitialColumnPosition = 0,
+                RowSize = 3,
+                ColumnSize = 3,
+                RowIncrement = 1,
+                ColumnIncrement = 1,
+            };
+
+            var actual = target.GetCellPosition(0, rule);
+            Assert.Equal(0, actual.Row);
+            Assert.Equal(0, actual.Column);
+
+            actual = target.GetCellPosition(3, rule);
+            Assert.Equal(0, actual.Row);
+            Assert.Equal(1, actual.Column);
+
+            actual = target.GetCellPosition(4, rule);
+            Assert.Equal(1, actual.Row);
+            Assert.Equal(1, actual.Column);
+
+            actual = target.GetCellPosition(7, rule);
+            Assert.Equal(1, actual.Row);
+            Assert.Equal(2, actual.Column);
+
+            actual = target.GetCellPosition(8, rule);
+            Assert.Equal(2, actual.Row);
+            Assert.Equal(2, actual.Column);
         }
     }
 }

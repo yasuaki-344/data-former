@@ -1,8 +1,9 @@
 ﻿using System;
 using DataFormer.ApplicationCore.Interfaces;
+using DataFormer.ApplicationCore.ValueObjects;
 using NPOI.SS.UserModel;
 
-namespace DataFormer.ApplicationCore.Services
+namespace DataFormer.ApplicationCore.BusinessLogics
 {
     public class ExcelDataExtractService : IExcelDataExtractService
     {
@@ -55,6 +56,29 @@ namespace DataFormer.ApplicationCore.Services
             else
             {
                 return null;
+            }
+        }
+
+        public (int Row, int Column) GetCellPosition(int index, SearchRule rule)
+        {
+            switch (rule.Direction)
+            {
+                case SearchDirection.Row:
+                {
+                    int quotient = Math.DivRem(index, rule.RowSize, out int remainder);
+                    var rowPosition = rule.InitialRowPostion + remainder * rule.RowIncrement;
+                    var columnPosition = rule.InitialColumnPosition + quotient * rule.ColumnIncrement;
+                    return (rowPosition, columnPosition);
+                }
+                case SearchDirection.Column:
+                {
+                    int quotient = Math.DivRem(index, rule.ColumnSize, out int remainder);
+                    var rowPosition = rule.InitialRowPostion + quotient * rule.RowIncrement;
+                    var columnPosition = rule.InitialColumnPosition + remainder * rule.ColumnIncrement;
+                    return (rowPosition, columnPosition);
+                }
+                default:
+                    throw new ArgumentException();
             }
         }
     }
