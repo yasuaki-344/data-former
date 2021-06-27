@@ -8,11 +8,15 @@ namespace DataFormer.ApplicationCore.Services
 {
     public class ExcelDataSearchService : IExcelDataSearchService
     {
+        private readonly IExcelDataExtractService _extractor;
+
         /// <summary>
         /// Initializes a new instance of ExcelDataSearchService class.
         /// </summary>
-        public ExcelDataSearchService()
+        /// <param name="extractor">Excel cell data extract object</param>
+        public ExcelDataSearchService(IExcelDataExtractService extractor)
         {
+            _extractor = extractor;
         }
 
         /// <inheritdoc/>
