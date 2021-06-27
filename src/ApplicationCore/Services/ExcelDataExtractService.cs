@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using DataFormer.ApplicationCore.Interfaces;
 using NPOI.SS.UserModel;
 
@@ -13,11 +13,13 @@ namespace DataFormer.ApplicationCore.Services
         {
         }
 
+        /// <inheritdoc/>
         public DateTime? ReadDateTime(ISheet sheet, int rowIndex, int columnIndex)
         {
             throw new NotImplementedException();
         }
 
+        /// <inheritdoc/>
         public string? ReadLabel(ISheet sheet, int rowIndex, int columnIndex)
         {
             throw new NotImplementedException();
