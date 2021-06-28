@@ -56,6 +56,26 @@ namespace DataFormer.ApplicationCore.Services
         {
             outputBook.CreateSheet(config.SheetName);
             var sheet = outputBook.GetSheet(config.SheetName);
+            var i = 0;
+            foreach (var columnConfig in config.Columns)
+            {
+                WriteCell(sheet, 0, i, columnConfig.ColumnName);
+                i++;
+            }
+        }
+
+        private void WriteCell(ISheet sheet, int rowIndex, int columnIndex, string value)
+        {
+            var row = sheet.GetRow(rowIndex) ?? sheet.CreateRow(rowIndex);
+            var cell = row.GetCell(columnIndex) ?? row.CreateCell(columnIndex);
+            cell.SetCellValue(value);
+        }
+
+        private void WriteCell(ISheet sheet, int rowIndex, int columnIndex, double value)
+        {
+            var row = sheet.GetRow(rowIndex) ?? sheet.CreateRow(rowIndex);
+            var cell = row.GetCell(columnIndex) ?? row.CreateCell(columnIndex);
+            cell.SetCellValue(value);
         }
 
         /// <inheritdoc/>
