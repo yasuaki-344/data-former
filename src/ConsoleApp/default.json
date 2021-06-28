@@ -7,10 +7,10 @@
       "columns": [
         {
           "column_name": "date",
+          "type": "date",
           "search_list": [
             {
               "sheet_name": "Sheet1",
-              "type": "date",
               "direction": "column",
               "initial_row_position": 0,
               "initial_column_position": 1,
@@ -23,10 +23,10 @@
         },
         {
           "column_name": "label",
+          "type": "label",
           "search_list": [
             {
               "sheet_name": "Sheet1",
-              "type": "label",
               "direction": "row",
               "initial_row_position": 1,
               "initial_column_position": 0,
@@ -39,10 +39,10 @@
         },
         {
           "column_name": "value",
+          "type": "numeric",
           "search_list": [
             {
               "sheet_name": "Sheet1",
-              "type": "numeric",
               "direction": "row",
               "initial_row_position": 1,
               "initial_column_position": 1,
