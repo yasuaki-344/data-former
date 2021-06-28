@@ -8,9 +8,6 @@ namespace DataFormer.ApplicationCore.Entities
         [JsonPropertyName("sheet_name")]
         public string SheetName { get; set; } = string.Empty;
 
-        [JsonPropertyName("type")]
-        public DataType Type { get; set; }
-
         [JsonPropertyName("direction")]
         public SearchDirection Direction { get; set; }
 

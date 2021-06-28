@@ -1,4 +1,4 @@
-namespace DataFormer.ApplicationCore.ValueObjects
+﻿namespace DataFormer.ApplicationCore.ValueObjects
 {
     public enum DataType
     {
