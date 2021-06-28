@@ -1,9 +1,13 @@
 ﻿using System;
+using System.IO;
+using System.Text.Json;
 using System.Threading.Tasks;
 using ConsoleAppFramework;
 using DataFormer.ApplicationCore.BusinessLogics;
+using DataFormer.ApplicationCore.Entities;
 using DataFormer.ApplicationCore.Interfaces;
 using DataFormer.ApplicationCore.Services;
+using DataFormer.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,6 +29,7 @@ namespace DataFormer.ConsoleApp
                     // Dependency injection setting
                     services.AddScoped<IExcelDataExtractService, ExcelDataExtractService>();
                     services.AddScoped<IExcelDataSearchService, ExcelDataSearchService>();
+                    services.AddScoped<IExcelFileController, ExcelFileController>();
                 })
                 .RunConsoleAppFrameworkAsync<ApplicationLogic>(args);
         }
@@ -34,25 +39,46 @@ namespace DataFormer.ConsoleApp
     {
         private readonly ILogger<ApplicationLogic> _logger;
 
+        private readonly IExcelDataSearchService _searcher;
         /// <summary>
         /// Initializes a new instance of ApplicationLogic class.
         /// </summary>
         /// <param name="logger">Logger object</param>
-        /// <param name="extractor">Excel cell data extract object</param>
+        /// <param name="searcher">Excel data searcher object</param>
         public ApplicationLogic(
-            ILogger<ApplicationLogic> logger
+            ILogger<ApplicationLogic> logger,
+            IExcelDataSearchService searcher
         )
         {
             _logger = logger;
+            _searcher = searcher;
         }
 
-        [Command("xlsx", "extract data from excel file")]
         public void ExtractDataFromExcelFile(
-            [Option("i", "input Excel file path.")] string inputFilePath,
-            [Option("o", "output Excel file path.")] string outputFilePath
+            [Option("c", "config file path.")] string configFilePath = "default.json"
         )
         {
-            throw new System.NotImplementedException();
+            _logger.LogInformation(Directory.GetCurrentDirectory());
+            if (File.Exists(configFilePath))
+            {
+                using (var sr = File.OpenText(configFilePath))
+                {
+                    var jsonString = sr.ReadToEnd();
+                    var config = JsonSerializer.Deserialize<ExtractConfig>(jsonString);
+                    if (config != null)
+                    {
+                        _searcher.ExtractData(config);
+                    }
+                    else
+                    {
+                        _logger.LogError("config file read error");
+                    }
+                }
+            }
+            else
+            {
+                _logger.LogError($"config file not found: {configFilePath}");
+            }
         }
     }
 }
