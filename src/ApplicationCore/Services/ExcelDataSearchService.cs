@@ -5,6 +5,7 @@ using DataFormer.ApplicationCore.Interfaces;
 using DataFormer.ApplicationCore.ValueObjects;
 using Microsoft.Extensions.Logging;
 using NPOI.SS.UserModel;
+using NPOI.XSSF.UserModel;
 
 namespace DataFormer.ApplicationCore.Services
 {
@@ -36,16 +37,25 @@ namespace DataFormer.ApplicationCore.Services
         {
             try
             {
-                var book = _fileController.Read(config.InputFilePath);
-                // TODO: data extract process
-                _fileController.Write(book, config.OutputFilePath);
-
+                var inputBook = _fileController.Read(config.InputFilePath);
+                var outputBook = new XSSFWorkbook();
+                foreach (var sheetConfig in config.Sheets)
+                {
+                    CreateExtractedDataSheet(inputBook, outputBook, sheetConfig);
+                }
+                _fileController.Write(outputBook, config.OutputFilePath);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
             }
 
+        }
+
+        private void CreateExtractedDataSheet(IWorkbook inputBook, IWorkbook outputBook, SheetConfig config)
+        {
+            outputBook.CreateSheet(config.SheetName);
+            var sheet = outputBook.GetSheet(config.SheetName);
         }
 
         /// <inheritdoc/>

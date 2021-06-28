@@ -3,7 +3,18 @@
   "output_file_path": "output.xlsx",
   "sheets": [
     {
-      "sheet_name": "sample1"
+      "sheet_name": "sample1",
+      "columns": [
+        {
+          "column_name": "date"
+        },
+        {
+          "column_name": "label"
+        },
+        {
+          "column_name": "value"
+        }
+      ]
     },
     {
       "sheet_name": "sample2"
