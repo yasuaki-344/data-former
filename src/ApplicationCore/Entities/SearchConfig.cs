@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using DataFormer.ApplicationCore.ValueObjects;
 
 namespace DataFormer.ApplicationCore.Entities
 {
@@ -11,7 +12,7 @@ namespace DataFormer.ApplicationCore.Entities
         public string Type { get; set; } = string.Empty;
 
         [JsonPropertyName("direction")]
-        public string Direction { get; set; } = string.Empty;
+        public SearchDirection Direction { get; set; }
 
         [JsonPropertyName("initial_row_position")]
         public int InitialRowPostion { get; set; }

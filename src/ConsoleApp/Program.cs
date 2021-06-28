@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using ConsoleAppFramework;
 using DataFormer.ApplicationCore.BusinessLogics;
@@ -64,7 +65,14 @@ namespace DataFormer.ConsoleApp
                 using (var sr = File.OpenText(configFilePath))
                 {
                     var jsonString = sr.ReadToEnd();
-                    var config = JsonSerializer.Deserialize<ExtractConfig>(jsonString);
+                    var options = new JsonSerializerOptions
+                    {
+                        Converters =
+                        {
+                            new JsonStringEnumConverter(JsonNamingPolicy.CamelCase)
+                        }
+                    };
+                    var config = JsonSerializer.Deserialize<ExtractConfig>(jsonString, options);
                     if (config != null)
                     {
                         _searcher.ExtractData(config);
