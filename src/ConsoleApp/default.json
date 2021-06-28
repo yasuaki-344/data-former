@@ -1,4 +1,12 @@
 {
   "input_file_path": "input.xlsx",
-  "output_file_path": "output.xlsx"
+  "output_file_path": "output.xlsx",
+  "sheets": [
+    {
+      "sheet_name": "sample1"
+    },
+    {
+      "sheet_name": "sample2"
+    }
+  ]
 }

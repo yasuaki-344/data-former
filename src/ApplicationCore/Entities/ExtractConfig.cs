@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace DataFormer.ApplicationCore.Entities
 {
@@ -9,5 +10,8 @@ namespace DataFormer.ApplicationCore.Entities
 
         [JsonPropertyName("output_file_path")]
         public string OutputFilePath { get; set; } = string.Empty;
+
+        [JsonPropertyName("sheets")]
+        public List<SheetConfig> Sheets { get; set; } = new List<SheetConfig>();
     }
 }
