@@ -6,13 +6,52 @@
       "sheet_name": "sample1",
       "columns": [
         {
-          "column_name": "date"
+          "column_name": "date",
+          "search_list": [
+            {
+              "sheet_name": "Sheet1",
+              "type": "date",
+              "direction": "column",
+              "initial_row_position": 0,
+              "initial_column_position": 1,
+              "row_size": 1,
+              "column_size": 6,
+              "row_increment": 1,
+              "column_increment": 1
+            }
+          ]
         },
         {
-          "column_name": "label"
+          "column_name": "label",
+          "search_list": [
+            {
+              "sheet_name": "Sheet1",
+              "type": "label",
+              "direction": "row",
+              "initial_row_position": 1,
+              "initial_column_position": 0,
+              "row_size": 3,
+              "column_size": 1,
+              "row_increment": 1,
+              "column_increment": 1
+            }
+          ]
         },
         {
-          "column_name": "value"
+          "column_name": "value",
+          "search_list": [
+            {
+              "sheet_name": "Sheet1",
+              "type": "numeric",
+              "direction": "row",
+              "initial_row_position": 1,
+              "initial_column_position": 1,
+              "row_size": 3,
+              "column_size": 6,
+              "row_increment": 1,
+              "column_increment": 1
+            }
+          ]
         }
       ]
     },
