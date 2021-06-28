@@ -37,16 +37,19 @@ namespace DataFormer.ConsoleApp
     {
         private readonly ILogger<ApplicationLogic> _logger;
 
+        private readonly IExcelDataSearchService _searcher;
         /// <summary>
         /// Initializes a new instance of ApplicationLogic class.
         /// </summary>
         /// <param name="logger">Logger object</param>
-        /// <param name="extractor">Excel cell data extract object</param>
+        /// <param name="searcher">Excel data searcher object</param>
         public ApplicationLogic(
-            ILogger<ApplicationLogic> logger
+            ILogger<ApplicationLogic> logger,
+            IExcelDataSearchService searcher
         )
         {
             _logger = logger;
+            _searcher = searcher;
         }
 
         public void ExtractDataFromExcelFile(
@@ -62,7 +65,11 @@ namespace DataFormer.ConsoleApp
                     var config = JsonSerializer.Deserialize<ExtractConfig>(jsonString);
                     if (config != null)
                     {
-
+                        _searcher.ExtractData(config);
+                    }
+                    else
+                    {
+                        _logger.LogError("config file read error");
                     }
                 }
             }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DataFormer.ApplicationCore.Entities;
 using DataFormer.ApplicationCore.Interfaces;
 using DataFormer.ApplicationCore.ValueObjects;
 using NPOI.SS.UserModel;
@@ -17,6 +18,12 @@ namespace DataFormer.ApplicationCore.Services
         public ExcelDataSearchService(IExcelDataExtractService extractor)
         {
             _extractor = extractor;
+        }
+
+        /// <inheritdoc/>
+        public void ExtractData(ExtractConfig config)
+        {
+            throw new System.NotImplementedException();
         }
 
         /// <inheritdoc/>
