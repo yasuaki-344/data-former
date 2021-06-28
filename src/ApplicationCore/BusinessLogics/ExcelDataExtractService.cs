@@ -64,19 +64,19 @@ namespace DataFormer.ApplicationCore.BusinessLogics
             switch (rule.Direction)
             {
                 case SearchDirection.Row:
-                {
-                    int quotient = Math.DivRem(index, rule.RowSize, out int remainder);
-                    var rowPosition = rule.InitialRowPostion + remainder * rule.RowIncrement;
-                    var columnPosition = rule.InitialColumnPosition + quotient * rule.ColumnIncrement;
-                    return (rowPosition, columnPosition);
-                }
+                    {
+                        int quotient = Math.DivRem(index, rule.RowSize, out int remainder);
+                        var rowPosition = rule.InitialRowPostion + remainder * rule.RowIncrement;
+                        var columnPosition = rule.InitialColumnPosition + quotient * rule.ColumnIncrement;
+                        return (rowPosition, columnPosition);
+                    }
                 case SearchDirection.Column:
-                {
-                    int quotient = Math.DivRem(index, rule.ColumnSize, out int remainder);
-                    var rowPosition = rule.InitialRowPostion + quotient * rule.RowIncrement;
-                    var columnPosition = rule.InitialColumnPosition + remainder * rule.ColumnIncrement;
-                    return (rowPosition, columnPosition);
-                }
+                    {
+                        int quotient = Math.DivRem(index, rule.ColumnSize, out int remainder);
+                        var rowPosition = rule.InitialRowPostion + quotient * rule.RowIncrement;
+                        var columnPosition = rule.InitialColumnPosition + remainder * rule.ColumnIncrement;
+                        return (rowPosition, columnPosition);
+                    }
                 default:
                     throw new ArgumentException();
             }

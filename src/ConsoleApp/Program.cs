@@ -1,7 +1,10 @@
 ﻿using System;
+using System.IO;
+using System.Text.Json;
 using System.Threading.Tasks;
 using ConsoleAppFramework;
 using DataFormer.ApplicationCore.BusinessLogics;
+using DataFormer.ApplicationCore.Entities;
 using DataFormer.ApplicationCore.Interfaces;
 using DataFormer.ApplicationCore.Services;
 using Microsoft.Extensions.Configuration;
@@ -46,13 +49,27 @@ namespace DataFormer.ConsoleApp
             _logger = logger;
         }
 
-        [Command("xlsx", "extract data from excel file")]
         public void ExtractDataFromExcelFile(
-            [Option("i", "input Excel file path.")] string inputFilePath,
-            [Option("o", "output Excel file path.")] string outputFilePath
+            [Option("c", "config file path.")] string configFilePath = "default.json"
         )
         {
-            throw new System.NotImplementedException();
+            _logger.LogInformation(Directory.GetCurrentDirectory());
+            if (File.Exists(configFilePath))
+            {
+                using (var sr = File.OpenText(configFilePath))
+                {
+                    var jsonString = sr.ReadToEnd();
+                    var config = JsonSerializer.Deserialize<ExtractConfig>(jsonString);
+                    if (config != null)
+                    {
+
+                    }
+                }
+            }
+            else
+            {
+                _logger.LogError($"config file not found: {configFilePath}");
+            }
         }
     }
 }
