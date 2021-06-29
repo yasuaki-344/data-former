@@ -149,23 +149,5 @@ namespace DataFormer.ApplicationCore.Services
             var cell = row.GetCell(columnIndex) ?? row.CreateCell(columnIndex);
             cell.SetCellValue(value);
         }
-
-        /// <inheritdoc/>
-        public IList<DateTime?> SearchDateTimes(ISheet sheet, SearchRule rule)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        /// <inheritdoc/>
-        public IList<string?> SearchLabels(ISheet sheet, SearchRule rule)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        /// <inheritdoc/>
-        public IList<double?> SearchNumerics(ISheet sheet, SearchRule rule)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }
