@@ -1,4 +1,5 @@
 ﻿using System;
+using DataFormer.ApplicationCore.Entities;
 using NPOI.SS.UserModel;
 
 namespace DataFormer.ApplicationCore.Interfaces
@@ -31,5 +32,7 @@ namespace DataFormer.ApplicationCore.Interfaces
         /// <param name="columnIndex">Column index of cell</param>
         /// <returns>Return cell value if cell exists, otherwise null</returns>
         double? ReadNumeric(ISheet sheet, int rowIndex, int columnIndex);
+
+        (int Row, int Column) GetCellPosition(int index, SearchConfig rule);
     }
 }

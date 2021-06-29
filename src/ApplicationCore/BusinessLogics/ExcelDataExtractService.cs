@@ -1,4 +1,5 @@
 ﻿using System;
+using DataFormer.ApplicationCore.Entities;
 using DataFormer.ApplicationCore.Interfaces;
 using DataFormer.ApplicationCore.ValueObjects;
 using NPOI.SS.UserModel;
@@ -59,7 +60,7 @@ namespace DataFormer.ApplicationCore.BusinessLogics
             }
         }
 
-        public (int Row, int Column) GetCellPosition(int index, SearchRule rule)
+        public (int Row, int Column) GetCellPosition(int index, SearchConfig rule)
         {
             switch (rule.Direction)
             {
