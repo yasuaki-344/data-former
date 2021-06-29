@@ -1,5 +1,6 @@
 ﻿using System;
 using DataFormer.ApplicationCore.BusinessLogics;
+using DataFormer.ApplicationCore.Entities;
 using DataFormer.ApplicationCore.ValueObjects;
 using NPOI.XSSF.UserModel;
 using Xunit;
@@ -110,7 +111,7 @@ namespace DataFormer.ApplicationCore.Test
         {
             var target = new ExcelDataExtractService();
 
-            var rule = new SearchRule
+            var rule = new SearchConfig
             {
                 Direction = SearchDirection.Row,
                 InitialRowPostion = 0,
