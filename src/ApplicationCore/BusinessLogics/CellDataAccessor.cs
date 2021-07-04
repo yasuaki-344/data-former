@@ -20,10 +20,12 @@ namespace DataFormer.ApplicationCore.BusinessLogics
             switch (type)
             {
                 case DataType.Integer:
-                    throw new NotImplementedException();
+                    {
+                        var value = readCell.NumericCellValue;
+                        writeCell.SetCellValue(value);
+                    }
+                    break;
                 case DataType.Decimal:
-                    throw new NotImplementedException();
-                case DataType.Numeric:
                     {
                         var value = readCell.NumericCellValue;
                         writeCell.SetCellValue(value);
@@ -35,8 +37,18 @@ namespace DataFormer.ApplicationCore.BusinessLogics
                         writeCell.SetCellValue(((DateTime)value).ToString("yyyy/MM/dd HH:mm:ss"));
                     }
                     break;
+                case DataType.Date:
+                    {
+                        var value = readCell.DateCellValue;
+                        writeCell.SetCellValue(((DateTime)value).ToString("yyyy/MM/dd HH:mm:ss"));
+                    }
+                    break;
                 case DataType.Time:
-                    throw new NotImplementedException();
+                    {
+                        var value = readCell.DateCellValue;
+                        writeCell.SetCellValue(((DateTime)value).ToString("yyyy/MM/dd HH:mm:ss"));
+                    }
+                    break;
                 case DataType.Label:
                     {
                         var value = readCell.StringCellValue;
@@ -44,7 +56,11 @@ namespace DataFormer.ApplicationCore.BusinessLogics
                     }
                     break;
                 case DataType.Boolean:
-                    throw new NotImplementedException();
+                    {
+                        var value = readCell.StringCellValue;
+                        writeCell.SetCellValue(value);
+                    }
+                    break;
                 default:
                     break;
             }

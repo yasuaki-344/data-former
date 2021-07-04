@@ -35,7 +35,6 @@ namespace ApplicationCore {
     enum DataType {
       + Integer
       + Decimal
-      + Numeric
       + DateTime
       + Date
       + Time

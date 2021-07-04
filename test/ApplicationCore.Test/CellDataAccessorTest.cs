@@ -59,7 +59,7 @@ namespace DataFormer.ApplicationCore.Test
             var writeCell = row.CreateCell(1);
 
             var target = new CellDataAccessor();
-            target.ExtractCellValue(DataType.Numeric, readCell, writeCell);
+            target.ExtractCellValue(DataType.Decimal, readCell, writeCell);
             Assert.Equal(expect, writeCell.NumericCellValue);
         }
     }
