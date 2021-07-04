@@ -8,7 +8,10 @@ namespace DataFormer.ApplicationCore.Entities
         [JsonPropertyName("sheet_name")]
         public string SheetName { get; set; } = string.Empty;
 
-        [JsonPropertyName("columns")]
-        public List<ColumnConfig> Columns { get; set; } = new List<ColumnConfig>();
+        [JsonPropertyName("headers")]
+        public List<ColumnConfig> Headers { get; set; } = new List<ColumnConfig>();
+
+        [JsonPropertyName("search_blocks")]
+        public List<List<SearchConfig>> SearchBlocks { get; set; } = new List<List<SearchConfig>>();
     }
 }
