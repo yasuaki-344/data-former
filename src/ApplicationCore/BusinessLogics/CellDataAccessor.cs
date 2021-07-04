@@ -34,19 +34,19 @@ namespace DataFormer.ApplicationCore.BusinessLogics
                 case DataType.DateTime:
                     {
                         var value = readCell.DateCellValue;
-                        writeCell.SetCellValue(((DateTime)value).ToString("yyyy/MM/dd HH:mm:ss"));
+                        writeCell.SetCellValue(value.ToString("yyyy/MM/dd HH:mm:ss"));
                     }
                     break;
                 case DataType.Date:
                     {
                         var value = readCell.DateCellValue;
-                        writeCell.SetCellValue(((DateTime)value).ToString("yyyy/MM/dd HH:mm:ss"));
+                        writeCell.SetCellValue(value.ToString("yyyy/MM/dd"));
                     }
                     break;
                 case DataType.Time:
                     {
                         var value = readCell.DateCellValue;
-                        writeCell.SetCellValue(((DateTime)value).ToString("yyyy/MM/dd HH:mm:ss"));
+                        writeCell.SetCellValue(value.ToString("HH:mm:ss"));
                     }
                     break;
                 case DataType.Label:

@@ -45,10 +45,29 @@ namespace DataFormer.ApplicationCore.Test
         }
 
         [Theory]
+        [InlineData(1970, 1, 1, 0, 0, 0)]
+        [InlineData(2021, 6, 14, 12, 30, 30)]
+        [InlineData(9999, 12, 31, 23, 59, 59)]
+        public void ReturnDateTimeCorrectly(int year, int month, int day, int hour, int minute, int second)
+        {
+            var expect = new DateTime(year, month, day, hour, minute, second);
+            var book = new XSSFWorkbook();
+            var sheet = book.CreateSheet("title");
+            var row = sheet.CreateRow(0);
+            var readCell = row.CreateCell(0);
+            readCell.SetCellValue(expect);
+            var writeCell = row.CreateCell(1);
+
+            var target = new CellDataAccessor();
+            target.ExtractCellValue(DataType.DateTime, readCell, writeCell);
+            Assert.Equal(expect.ToString("yyyy/MM/dd HH:mm:ss"), writeCell.StringCellValue);
+        }
+
+        [Theory]
         [InlineData(2021, 1, 1)]
         [InlineData(2021, 6, 30)]
         [InlineData(2021, 12, 31)]
-        public void ReturnDateTimeCorrectly(int year, int month, int day)
+        public void ReturnDateCorrectly(int year, int month, int day)
         {
             var expect = new DateTime(year, month, day);
             var book = new XSSFWorkbook();
@@ -60,7 +79,26 @@ namespace DataFormer.ApplicationCore.Test
 
             var target = new CellDataAccessor();
             target.ExtractCellValue(DataType.Date, readCell, writeCell);
-            Assert.Equal(expect.ToString("yyyy/MM/dd HH:mm:ss"), writeCell.StringCellValue);
+            Assert.Equal(expect.ToString("yyyy/MM/dd"), writeCell.StringCellValue);
+        }
+
+        [Theory]
+        [InlineData(0, 0, 0)]
+        [InlineData(12, 30, 30)]
+        [InlineData(23, 59, 59)]
+        public void ReturnTimeCorrectly(int hour, int minute, int second)
+        {
+            var expect = new DateTime(2021, 1, 1, hour, minute, second);
+            var book = new XSSFWorkbook();
+            var sheet = book.CreateSheet("title");
+            var row = sheet.CreateRow(0);
+            var readCell = row.CreateCell(0);
+            readCell.SetCellValue(expect);
+            var writeCell = row.CreateCell(1);
+
+            var target = new CellDataAccessor();
+            target.ExtractCellValue(DataType.Time, readCell, writeCell);
+            Assert.Equal(expect.ToString("HH:mm:ss"), writeCell.StringCellValue);
         }
 
         [Theory]
