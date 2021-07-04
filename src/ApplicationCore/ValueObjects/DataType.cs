@@ -2,8 +2,13 @@
 {
     public enum DataType
     {
+        Integer,
+        Decimal,
+        Numeric,
+        DateTime,
         Date,
+        Time,
         Label,
-        Numeric
+        Boolean
     }
 }
