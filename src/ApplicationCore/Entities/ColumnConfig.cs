@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 using DataFormer.ApplicationCore.ValueObjects;
 
 namespace DataFormer.ApplicationCore.Entities
@@ -11,8 +10,5 @@ namespace DataFormer.ApplicationCore.Entities
 
         [JsonPropertyName("type")]
         public DataType Type { get; set; }
-
-        [JsonPropertyName("search_list")]
-        public List<SearchConfig> SearchList { get; set; } = new List<SearchConfig>();
     }
 }
