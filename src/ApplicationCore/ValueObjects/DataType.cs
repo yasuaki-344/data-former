@@ -4,7 +4,6 @@
     {
         Integer,
         Decimal,
-        Numeric,
         DateTime,
         Date,
         Time,

@@ -28,8 +28,10 @@ namespace DataFormer.ConsoleApp
                 .ConfigureServices((context, services) =>
                 {
                     // Dependency injection setting
-                    services.AddScoped<IExcelDataExtractService, ExcelDataExtractService>();
-                    services.AddScoped<IExcelDataSearchService, ExcelDataSearchService>();
+                    services.AddScoped<IExcelCellAccessor, ExcelCellAccessor>();
+                    services.AddScoped<IMatrixDataManger, MatrixDataManger>();
+                    services.AddScoped<ICellDataAccessor, CellDataAccessor>();
+                    services.AddScoped<IExcelDataCleanService, ExcelDataCleanService>();
                     services.AddScoped<IExcelFileController, ExcelFileController>();
                 })
                 .RunConsoleAppFrameworkAsync<ApplicationLogic>(args);
@@ -40,19 +42,19 @@ namespace DataFormer.ConsoleApp
     {
         private readonly ILogger<ApplicationLogic> _logger;
 
-        private readonly IExcelDataSearchService _searcher;
+        private readonly IExcelDataCleanService _cleaner;
         /// <summary>
         /// Initializes a new instance of ApplicationLogic class.
         /// </summary>
         /// <param name="logger">Logger object</param>
-        /// <param name="searcher">Excel data searcher object</param>
+        /// <param name="cleaner">Excel data cleaner object</param>
         public ApplicationLogic(
             ILogger<ApplicationLogic> logger,
-            IExcelDataSearchService searcher
+            IExcelDataCleanService cleaner
         )
         {
             _logger = logger;
-            _searcher = searcher;
+            _cleaner = cleaner;
         }
 
         public void ExtractDataFromExcelFile(
@@ -72,10 +74,10 @@ namespace DataFormer.ConsoleApp
                             new JsonStringEnumConverter(JsonNamingPolicy.CamelCase)
                         }
                     };
-                    var config = JsonSerializer.Deserialize<ExtractConfig>(jsonString, options);
+                    var config = JsonSerializer.Deserialize<AppConfig>(jsonString, options);
                     if (config != null)
                     {
-                        _searcher.ExtractData(config);
+                        _cleaner.CleanData(config);
                     }
                     else
                     {

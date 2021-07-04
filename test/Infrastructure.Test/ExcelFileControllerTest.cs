@@ -3,7 +3,7 @@ using Xunit;
 
 namespace DataFormer.Infrastructure.Test
 {
-    public class UnitTest1
+    public class ExcelFileControllerTest
     {
         [Fact]
         public void Test1()

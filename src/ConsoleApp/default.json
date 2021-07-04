@@ -1,14 +1,26 @@
 {
-  "input_file_path": "input.xlsx",
-  "output_file_path": "output.xlsx",
+  "input_file_path": "C:\\Users\\ikaus\\OneDrive\\ドキュメント\\input.xlsx",
+  "output_file_path": "C:\\Users\\ikaus\\OneDrive\\ドキュメント\\output.xlsx",
   "sheets": [
     {
       "sheet_name": "sample1",
-      "columns": [
+      "headers": [
         {
           "column_name": "date",
-          "type": "date",
-          "search_list": [
+          "type": "date"
+        },
+        {
+          "column_name": "label",
+          "type": "label"
+        },
+        {
+          "column_name": "value",
+          "type": "decimal"
+        }
+      ],
+      "search_blocks": [
+        {
+          "column_search": [
             {
               "sheet_name": "Sheet1",
               "direction": "column",
@@ -18,13 +30,7 @@
               "column_size": 6,
               "row_increment": 1,
               "column_increment": 1
-            }
-          ]
-        },
-        {
-          "column_name": "label",
-          "type": "label",
-          "search_list": [
+            },
             {
               "sheet_name": "Sheet1",
               "direction": "row",
@@ -34,13 +40,7 @@
               "column_size": 1,
               "row_increment": 1,
               "column_increment": 1
-            }
-          ]
-        },
-        {
-          "column_name": "value",
-          "type": "numeric",
-          "search_list": [
+            },
             {
               "sheet_name": "Sheet1",
               "direction": "row",
@@ -54,9 +54,6 @@
           ]
         }
       ]
-    },
-    {
-      "sheet_name": "sample2"
     }
   ]
 }

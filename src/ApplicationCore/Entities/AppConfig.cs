@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace DataFormer.ApplicationCore.Entities
 {
-    public class ExtractConfig
+    public class AppConfig
     {
         [JsonPropertyName("input_file_path")]
         public string InputFilePath { get; set; } = string.Empty;
@@ -13,5 +13,6 @@ namespace DataFormer.ApplicationCore.Entities
 
         [JsonPropertyName("sheets")]
         public List<SheetConfig> Sheets { get; set; } = new List<SheetConfig>();
+
     }
 }

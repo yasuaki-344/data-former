@@ -1,0 +1,75 @@
+@startuml class-diagram
+
+namespace ApplicationCore {
+  namespace Entities {
+    entity AppConfig {
+      + string InputFilePath
+      + string OutputFilePath
+      + List<SheetConfig> Sheets
+    }
+    entity SheetConfig {
+      + string SheetName
+      + List<ColumnConfig> Headers
+      + List<List<SearchConfig>> SearchBlocks
+    }
+    entity ColumnConfig {
+      + string ColumnName
+      + DataType Type
+    }
+    entity SearchConfig {
+      + string SheetName
+      + SearchDirection Direction
+      + int InitialRowPostion
+      + int InitialColumnPosition
+      + int RowSize
+      + int ColumnSize
+      + int RowIncrement
+      + int ColumnIncrement
+    }
+  }
+  namespace ValueObjects {
+    enum SearchDirection {
+      + Row
+      + Column
+    }
+    enum DataType {
+      + Integer
+      + Decimal
+      + DateTime
+      + Date
+      + Time
+      + Label
+      + Boolean
+    }
+  }
+  namespace Interfaces {
+    interface IExcelDataCleanService
+    interface IExcelFileController
+    interface IExcelCellAccessor
+    interface IMatrixDataManger
+    interface ICellDataAccessor
+  }
+  namespace Services {
+    class ExcelDataCleanService
+  }
+  namespace BusinesLogics {
+    class ExcelCellAccessor
+    class MatrixDataManager
+    class CellDataAccessor
+  }
+}
+namespace Infrastructure {
+  class ExcelFileController
+}
+ApplicationCore.Interfaces.IExcelDataCleanService <|-- ApplicationCore.Services.ExcelDataCleanService
+ApplicationCore.Interfaces.IExcelCellAccessor <|-- ApplicationCore.BusinesLogics.ExcelCellAccessor
+ApplicationCore.Interfaces.IMatrixDataManger <|-- ApplicationCore.BusinesLogics.MatrixDataManager
+ApplicationCore.Interfaces.ICellDataAccessor <|-- ApplicationCore.BusinesLogics.CellDataAccessor
+ApplicationCore.Interfaces.IExcelFileController <|-- Infrastructure.ExcelFileController
+
+ApplicationCore.Services.ExcelDataCleanService --> ApplicationCore.Interfaces.IExcelFileController
+ApplicationCore.Services.ExcelDataCleanService --> ApplicationCore.Interfaces.IExcelCellAccessor
+ApplicationCore.Services.ExcelDataCleanService --> ApplicationCore.Interfaces.IMatrixDataManger
+ApplicationCore.Services.ExcelDataCleanService --> ApplicationCore.Interfaces.ICellDataAccessor
+
+@enduml

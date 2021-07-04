@@ -14,15 +14,16 @@
   * `header`: 列情報の設定リスト
     * `column_name`: 列名
     * `type`: データの型
-  * `blocks`: データ探索範囲リスト, 列ごとに設定
-    * `sheet_name`: 探索先のシート名
-    * `direction`: どちら（行, 列）から探索を開始するか
-    * `initial_row_position`: 行の探索開始位置(0始まり)
-    * `initial_column_position`: 列の探索開始位置(0始まり)
-    * `row_size`: 行方向に取得するデータの数
-    * `column_size`: 列方向に取得するデータの数
-    * `row_increment`: 行方向にデータを取得する間隔
-    * `column_increment`: 列方向にデータを取得する間隔
+  * `search_blocks`: データ探索範囲リスト, 列ごとに設定
+    * `column_search`: 列ごとに探索設定
+      * `sheet_name`: 探索先のシート名
+      * `direction`: どちら（行, 列）から探索を開始するか
+      * `initial_row_position`: 行の探索開始位置(0始まり)
+      * `initial_column_position`: 列の探索開始位置(0始まり)
+      * `row_size`: 行方向に取得するデータの数
+      * `column_size`: 列方向に取得するデータの数
+      * `row_increment`: 行方向にデータを取得する間隔
+      * `column_increment`: 列方向にデータを取得する間隔
 
 ### 対応データ型
 
