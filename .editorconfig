@@ -38,6 +38,10 @@ indent_size = 2
 [*.{props,targets,ruleset,config,nuspec,resx,vsixmanifest,vsct}]
 indent_size = 2
 
+# PlantUML files
+[*.puml]
+indent_size = 2
+
 # JSON files
 [*.json]
 indent_size = 2
