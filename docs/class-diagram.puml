@@ -64,13 +64,13 @@ namespace Infrastructure {
 }
 ApplicationCore.Interfaces.IExcelDataCleanService <|-- ApplicationCore.Services.ExcelDataCleanService
 ApplicationCore.Interfaces.IExcelCellAccessor <|-- ApplicationCore.BusinesLogics.ExcelCellAccessor
-ApplicationCore.Interfaces.IMatrixDataManger <|-- ApplicationCore.BusinesLogics.MatrixDataManger
+ApplicationCore.Interfaces.IMatrixDataManger <|-- ApplicationCore.BusinesLogics.MatrixDataManager
 ApplicationCore.Interfaces.ICellDataAccessor <|-- ApplicationCore.BusinesLogics.CellDataAccessor
 ApplicationCore.Interfaces.IExcelFileController <|-- Infrastructure.ExcelFileController
 
-ApplicationCore.Interfaces.IExcelFileController <-- ApplicationCore.Services.ExcelDataCleanService
-ApplicationCore.Interfaces.IExcelCellAccessor <-- ApplicationCore.Services.ExcelDataCleanService
-ApplicationCore.Interfaces.IMatrixDataManger <-- ApplicationCore.Services.ExcelDataCleanService
-ApplicationCore.Interfaces.ICellDataAccessor <-- ApplicationCore.Services.ExcelDataCleanService
+ApplicationCore.Services.ExcelDataCleanService --> ApplicationCore.Interfaces.IExcelFileController
+ApplicationCore.Services.ExcelDataCleanService --> ApplicationCore.Interfaces.IExcelCellAccessor
+ApplicationCore.Services.ExcelDataCleanService --> ApplicationCore.Interfaces.IMatrixDataManger
+ApplicationCore.Services.ExcelDataCleanService --> ApplicationCore.Interfaces.ICellDataAccessor
 
 @enduml
