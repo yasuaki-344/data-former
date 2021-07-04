@@ -57,7 +57,7 @@ namespace DataFormer.ApplicationCore.BusinessLogics
                     break;
                 case DataType.Boolean:
                     {
-                        var value = readCell.StringCellValue;
+                        var value = readCell.BooleanCellValue;
                         writeCell.SetCellValue(value);
                     }
                     break;

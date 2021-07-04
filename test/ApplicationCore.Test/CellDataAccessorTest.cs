@@ -62,5 +62,22 @@ namespace DataFormer.ApplicationCore.Test
             target.ExtractCellValue(DataType.Decimal, readCell, writeCell);
             Assert.Equal(expect, writeCell.NumericCellValue);
         }
+
+        [Theory]
+        [InlineData(false)]
+        [InlineData(true)]
+        public void ReturnBooleanCorrectly(bool expect)
+        {
+            var book = new XSSFWorkbook();
+            var sheet = book.CreateSheet("title");
+            var row = sheet.CreateRow(0);
+            var readCell = row.CreateCell(0);
+            readCell.SetCellValue(expect);
+            var writeCell = row.CreateCell(1);
+
+            var target = new CellDataAccessor();
+            target.ExtractCellValue(DataType.Boolean, readCell, writeCell);
+            Assert.Equal(expect, writeCell.BooleanCellValue);
+        }
     }
 }
