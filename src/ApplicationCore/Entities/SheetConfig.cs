@@ -12,6 +12,6 @@ namespace DataFormer.ApplicationCore.Entities
         public List<ColumnConfig> Headers { get; set; } = new List<ColumnConfig>();
 
         [JsonPropertyName("search_blocks")]
-        public List<List<SearchConfig>> SearchBlocks { get; set; } = new List<List<SearchConfig>>();
+        public List<SearchBlock> SearchBlocks { get; set; } = new List<SearchBlock>();
     }
 }

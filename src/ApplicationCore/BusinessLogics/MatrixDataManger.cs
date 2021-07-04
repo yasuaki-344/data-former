@@ -17,9 +17,9 @@ namespace DataFormer.ApplicationCore.BusinessLogics
         }
 
         /// <inheritdoc/>
-        public int GetMaxDataNumber(List<SearchConfig> block)
+        public int GetMaxDataNumber(SearchBlock block)
         {
-            var maxDataNumber = block.Select(x => x.ColumnSize * x.RowSize).Max();
+            var maxDataNumber = block.ColumnSearch.Select(x => x.ColumnSize * x.RowSize).Max();
             return maxDataNumber;
         }
 

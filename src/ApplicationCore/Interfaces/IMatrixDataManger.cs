@@ -10,7 +10,7 @@ namespace DataFormer.ApplicationCore.Interfaces
         /// </summary>
         /// <param name="block"></param>
         /// <returns></returns>
-        int GetMaxDataNumber(List<SearchConfig> block);
+        int GetMaxDataNumber(SearchBlock block);
 
         /// <summary>
         ///
