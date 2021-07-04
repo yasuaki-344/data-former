@@ -9,6 +9,42 @@ namespace DataFormer.ApplicationCore.Test
     public class ExcelDataExtractServiceTest
     {
         [Theory]
+        [InlineData(10.1111)]
+        [InlineData(22.4444)]
+        [InlineData(55.5555)]
+        public void ReturnNumericCorrectly(double expect)
+        {
+            var book = new XSSFWorkbook();
+            var sheet = book.CreateSheet("title");
+            var row = sheet.CreateRow(0);
+            var readCell = row.CreateCell(0);
+            readCell.SetCellValue(expect);
+            var writeCell = row.CreateCell(1);
+
+            var target = new CellDataAccessor();
+            target.ExtractCellValue(DataType.Integer, readCell, writeCell);
+            Assert.Equal(Math.Floor(expect), writeCell.NumericCellValue);
+        }
+
+        [Theory]
+        [InlineData(11.1)]
+        [InlineData(23.4)]
+        [InlineData(45.6)]
+        public void ReturnDecimalCorrectly(double expect)
+        {
+            var book = new XSSFWorkbook();
+            var sheet = book.CreateSheet("title");
+            var row = sheet.CreateRow(0);
+            var readCell = row.CreateCell(0);
+            readCell.SetCellValue(expect);
+            var writeCell = row.CreateCell(1);
+
+            var target = new CellDataAccessor();
+            target.ExtractCellValue(DataType.Decimal, readCell, writeCell);
+            Assert.Equal(expect, writeCell.NumericCellValue);
+        }
+
+        [Theory]
         [InlineData(2021, 1, 1)]
         [InlineData(2021, 6, 30)]
         [InlineData(2021, 12, 31)]
@@ -43,24 +79,6 @@ namespace DataFormer.ApplicationCore.Test
             var target = new CellDataAccessor();
             target.ExtractCellValue(DataType.Label, readCell, writeCell);
             Assert.Equal(expect, writeCell.StringCellValue);
-        }
-
-        [Theory]
-        [InlineData(11.1)]
-        [InlineData(23.4)]
-        [InlineData(45.6)]
-        public void ReturnNumericCorrectly(double expect)
-        {
-            var book = new XSSFWorkbook();
-            var sheet = book.CreateSheet("title");
-            var row = sheet.CreateRow(0);
-            var readCell = row.CreateCell(0);
-            readCell.SetCellValue(expect);
-            var writeCell = row.CreateCell(1);
-
-            var target = new CellDataAccessor();
-            target.ExtractCellValue(DataType.Decimal, readCell, writeCell);
-            Assert.Equal(expect, writeCell.NumericCellValue);
         }
 
         [Theory]

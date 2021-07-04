@@ -21,7 +21,7 @@ namespace DataFormer.ApplicationCore.BusinessLogics
             {
                 case DataType.Integer:
                     {
-                        var value = readCell.NumericCellValue;
+                        var value = Math.Floor(readCell.NumericCellValue);
                         writeCell.SetCellValue(value);
                     }
                     break;
