@@ -7,6 +7,10 @@ namespace DataFormer.ApplicationCore.BusinessLogics
 {
     public class CellDataAccessor : ICellDataAccessor
     {
+        private readonly string _datetimeFormat = "yyyy/MM/dd HH:mm:ss";
+        private readonly string _dateFormat = "yyyy/MM/dd";
+        private readonly string _timeFormat = "HH:mm:ss";
+
         /// <summary>
         /// Initializes a new instance of CellDataAccessor class.
         /// </summary>
@@ -34,19 +38,19 @@ namespace DataFormer.ApplicationCore.BusinessLogics
                 case DataType.DateTime:
                     {
                         var value = readCell.DateCellValue;
-                        writeCell.SetCellValue(value.ToString("yyyy/MM/dd HH:mm:ss"));
+                        writeCell.SetCellValue(value.ToString(_datetimeFormat));
                     }
                     break;
                 case DataType.Date:
                     {
                         var value = readCell.DateCellValue;
-                        writeCell.SetCellValue(value.ToString("yyyy/MM/dd"));
+                        writeCell.SetCellValue(value.ToString(_dateFormat));
                     }
                     break;
                 case DataType.Time:
                     {
                         var value = readCell.DateCellValue;
-                        writeCell.SetCellValue(value.ToString("HH:mm:ss"));
+                        writeCell.SetCellValue(value.ToString(_timeFormat));
                     }
                     break;
                 case DataType.Label:
