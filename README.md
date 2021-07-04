@@ -14,7 +14,7 @@
   * `header`: 列情報の設定リスト
     * `column_name`: 列名
     * `type`: データの型
-  * `blocks`: データ探索範囲リスト, 列ごとに設定
+  * `search_blocks`: データ探索範囲リスト, 列ごとに設定
     * `sheet_name`: 探索先のシート名
     * `direction`: どちら（行, 列）から探索を開始するか
     * `initial_row_position`: 行の探索開始位置(0始まり)
