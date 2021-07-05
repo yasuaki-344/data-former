@@ -109,7 +109,18 @@ namespace DataFormer.ApplicationCore.Services
                 if (readCell != null)
                 {
                     var writeCell = _accessor.GetWriteCell(sheet, blockRowIndex + i, columnIndex);
-                    _extractor.ExtractCellValue(type, readCell, writeCell);
+                    try
+                    {
+                        _extractor.ExtractCellValue(type, readCell, writeCell);
+                    }
+                    catch (InvalidOperationException ex)
+                    {
+                        _logger.LogWarning($"{readCell.RowIndex}, {readCell.ColumnIndex}]:{ex.Message}");
+                    }
+                    catch (FormatException ex)
+                    {
+                        _logger.LogWarning($"{readCell.RowIndex}, {readCell.ColumnIndex}]:{ex.Message}");
+                    }
                 }
             }
         }
