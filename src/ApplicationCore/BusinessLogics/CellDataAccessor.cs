@@ -56,7 +56,10 @@ namespace DataFormer.ApplicationCore.BusinessLogics
                 case DataType.Label:
                     {
                         var value = readCell.StringCellValue;
-                        writeCell.SetCellValue(value);
+                        if (!string.IsNullOrEmpty(value))
+                        {
+                            writeCell.SetCellValue(value);
+                        }
                     }
                     break;
                 case DataType.Boolean:
