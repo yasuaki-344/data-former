@@ -68,6 +68,15 @@ namespace DataFormer.ApplicationCore.BusinessLogics
                         writeCell.SetCellValue(value);
                     }
                     break;
+                case DataType.Comment:
+                    {
+                        var value = readCell.CellComment.String.String;
+                        if (!string.IsNullOrEmpty(value))
+                        {
+                            writeCell.SetCellValue(value);
+                        }
+                    }
+                    break;
                 default:
                     break;
             }
