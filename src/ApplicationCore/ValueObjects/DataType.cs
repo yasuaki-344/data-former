@@ -8,6 +8,7 @@
         Date,
         Time,
         Label,
-        Boolean
+        Boolean,
+        Comment
     }
 }
