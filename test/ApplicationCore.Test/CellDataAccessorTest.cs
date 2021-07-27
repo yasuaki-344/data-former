@@ -135,5 +135,28 @@ namespace DataFormer.ApplicationCore.Test
             target.ExtractCellValue(DataType.Boolean, readCell, writeCell);
             Assert.Equal(expect, writeCell.BooleanCellValue);
         }
+
+        [Fact]
+        public void RetrunCellCommentCorrectly()
+        {
+            var expect = "cell comment";
+
+            var book = new XSSFWorkbook();
+            var sheet = book.CreateSheet("title");
+            var row = sheet.CreateRow(0);
+            var readCell = row.CreateCell(0);
+            var writeCell = row.CreateCell(1);
+
+            var drawing = sheet.CreateDrawingPatriarch();
+            var anchor = book.GetCreationHelper().CreateClientAnchor();
+            var comment = drawing.CreateCellComment(anchor);
+            comment.String = new XSSFRichTextString(expect);
+
+            readCell.CellComment = comment;
+
+            var target = new CellDataAccessor();
+            target.ExtractCellValue(DataType.Comment, readCell, writeCell);
+            Assert.Equal(expect, writeCell.StringCellValue);
+        }
     }
 }

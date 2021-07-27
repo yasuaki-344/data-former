@@ -70,7 +70,11 @@ namespace DataFormer.ApplicationCore.BusinessLogics
                     break;
                 case DataType.Comment:
                     {
-                        writeCell.SetCellValue(string.Empty);
+                        var value = readCell.CellComment.String.String;
+                        if (!string.IsNullOrEmpty(value))
+                        {
+                            writeCell.SetCellValue(value);
+                        }
                     }
                     break;
                 default:
