@@ -21,5 +21,12 @@ namespace DataFormer.ApplicationCore.Interfaces
         /// <param name="columnIndex">Column index of cell</param>
         /// <returns></returns>
         ICell GetWriteCell(ISheet sheet, int rowIndex, int columnIndex);
+
+        /// <summary>
+        /// Gets column index from column name.
+        /// </summary>
+        /// <param name="columnString">excel column name (ex. AC)</param>
+        /// <returns>Colmun index</returns>
+        int GetColumnIndex(string columnString);
     }
 }

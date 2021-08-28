@@ -1,6 +1,6 @@
 ﻿using System;
-using System.IO;
 using System.Collections.Generic;
+using System.IO;
 using DataFormer.ApplicationCore.Entities;
 using DataFormer.ApplicationCore.Interfaces;
 using DataFormer.ApplicationCore.ValueObjects;
