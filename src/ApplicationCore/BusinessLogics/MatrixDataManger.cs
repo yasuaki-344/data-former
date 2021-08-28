@@ -28,6 +28,11 @@ namespace DataFormer.ApplicationCore.BusinessLogics
         {
             var modifiedIndex = index % (config.RowSize * config.ColumnSize);
             var columnIndex = GetColumnIndex(config.InitialColumn);
+            if (columnIndex < 0)
+            {
+                throw new ArgumentException($"column name: {config.InitialColumn}");
+            }
+
             switch (config.Direction)
             {
                 case SearchDirection.Row:
