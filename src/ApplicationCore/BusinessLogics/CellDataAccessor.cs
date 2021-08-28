@@ -70,7 +70,11 @@ namespace DataFormer.ApplicationCore.BusinessLogics
                     break;
                 case DataType.Formula:
                     {
-
+                        var value = readCell.CellFormula;
+                        if (!string.IsNullOrEmpty(value))
+                        {
+                            writeCell.SetCellValue(value);
+                        }
                     }
                     break;
                 case DataType.Comment:
