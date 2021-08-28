@@ -43,5 +43,20 @@ namespace DataFormer.ApplicationCore.Test
             Assert.Equal(2, actual.Row);
             Assert.Equal(2, actual.Column);
         }
+
+        [Theory]
+        [InlineData("A", 0)]
+        [InlineData("M", 12)]
+        [InlineData("Z", 25)]
+        [InlineData("AA", 26)]
+        [InlineData("BM", 64)]
+        [InlineData("CZ", 103)]
+        [InlineData("IV", 255)]
+        public void GetColumnIndexCorrectly(string columnString, int columnsIndex)
+        {
+            var target = new MatrixDataManger();
+            var actual = target.GetColumnIndex(columnString);
+            Assert.Equal(columnsIndex, actual);
+        }
     }
 }
