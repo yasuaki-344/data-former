@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using DataFormer.ApplicationCore.Entities;
 using DataFormer.ApplicationCore.Interfaces;
@@ -45,7 +46,8 @@ namespace DataFormer.ApplicationCore.Services
         {
             try
             {
-                var inputBook = _fileController.Read(config.InputFilePath);
+                var inputFullPath = Path.GetFullPath(config.InputFilePath);
+                var inputBook = _fileController.Read(inputFullPath);
                 var outputBook = new XSSFWorkbook();
 
                 foreach (var sheetConfig in config.Sheets)
@@ -53,7 +55,8 @@ namespace DataFormer.ApplicationCore.Services
                     CreateOutputSheet(inputBook, outputBook, sheetConfig);
                 }
 
-                _fileController.Write(outputBook, config.OutputFilePath);
+                var outputFullPath = Path.GetFullPath(config.OutputFilePath);
+                _fileController.Write(outputBook, outputFullPath);
             }
             catch (Exception ex)
             {
