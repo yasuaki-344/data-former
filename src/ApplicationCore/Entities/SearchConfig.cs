@@ -11,8 +11,8 @@ namespace DataFormer.ApplicationCore.Entities
         [JsonPropertyName("direction")]
         public SearchDirection Direction { get; set; }
 
-        [JsonPropertyName("initial_row_position")]
-        public int InitialRowPostion { get; set; }
+        [JsonPropertyName("initial_row")]
+        public int InitialRow { get; set; }
 
         [JsonPropertyName("initial_column")]
         public string InitialColumn { get; set; } = string.Empty;

@@ -15,7 +15,7 @@ namespace DataFormer.ApplicationCore.Test
             var rule = new SearchConfig
             {
                 Direction = SearchDirection.Row,
-                InitialRowPostion = 0,
+                InitialRow = 1,
                 InitialColumn = "A",
                 RowSize = 3,
                 ColumnSize = 3,

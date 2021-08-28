@@ -27,6 +27,7 @@ namespace DataFormer.ApplicationCore.BusinessLogics
         public (int Row, int Column) GetPosition(int index, SearchConfig config)
         {
             var modifiedIndex = index % (config.RowSize * config.ColumnSize);
+            var rowIndex = config.InitialRow - 1;
             var columnIndex = GetColumnIndex(config.InitialColumn);
             if (columnIndex < 0)
             {
@@ -38,14 +39,14 @@ namespace DataFormer.ApplicationCore.BusinessLogics
                 case SearchDirection.Row:
                     {
                         int quotient = Math.DivRem(modifiedIndex, config.RowSize, out int remainder);
-                        var rowPosition = config.InitialRowPostion + remainder * config.RowIncrement;
+                        var rowPosition = rowIndex + remainder * config.RowIncrement;
                         var columnPosition = columnIndex + quotient * config.ColumnIncrement;
                         return (rowPosition, columnPosition);
                     }
                 case SearchDirection.Column:
                     {
                         int quotient = Math.DivRem(modifiedIndex, config.ColumnSize, out int remainder);
-                        var rowPosition = config.InitialRowPostion + quotient * config.RowIncrement;
+                        var rowPosition = rowIndex + quotient * config.RowIncrement;
                         var columnPosition = columnIndex + remainder * config.ColumnIncrement;
                         return (rowPosition, columnPosition);
                     }
