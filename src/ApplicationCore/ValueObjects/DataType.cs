@@ -9,6 +9,7 @@
         Time,
         Label,
         Boolean,
+        Formula,
         Comment
     }
 }
