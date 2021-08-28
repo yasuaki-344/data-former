@@ -14,8 +14,8 @@ namespace DataFormer.ApplicationCore.Entities
         [JsonPropertyName("initial_row_position")]
         public int InitialRowPostion { get; set; }
 
-        [JsonPropertyName("initial_column_position")]
-        public int InitialColumnPosition { get; set; }
+        [JsonPropertyName("initial_column")]
+        public string InitialColumn { get; set; } = string.Empty;
 
         [JsonPropertyName("row_size")]
         public int RowSize { get; set; }

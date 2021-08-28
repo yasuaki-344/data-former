@@ -16,7 +16,7 @@ namespace DataFormer.ApplicationCore.Test
             {
                 Direction = SearchDirection.Row,
                 InitialRowPostion = 0,
-                InitialColumnPosition = 0,
+                InitialColumn = "A",
                 RowSize = 3,
                 ColumnSize = 3,
                 RowIncrement = 1,
