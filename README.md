@@ -18,8 +18,8 @@
     * `column_search`: 列ごとに探索設定
       * `sheet_name`: 探索先のシート名
       * `direction`: どちら（行, 列）から探索を開始するか
-      * `initial_row_position`: 行の探索開始位置(0始まり)
-      * `initial_column_position`: 列の探索開始位置(0始まり)
+      * `initial_row`: 行の探索開始位置(1始まり, エクセルの行番号に対応)
+      * `initial_column`: 列の探索開始位置(ex. AB)
       * `row_size`: 行方向に取得するデータの数
       * `column_size`: 列方向に取得するデータの数
       * `row_increment`: 行方向にデータを取得する間隔
@@ -34,4 +34,5 @@
 * `time`: 時刻
 * `label`: テキスト
 * `boolean`: ブール値(trueもしくはfalse)
+* `formula`: セルに埋め込まれた数式
 * `comment`: セルに埋め込まれたコメント

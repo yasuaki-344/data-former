@@ -15,8 +15,8 @@ namespace DataFormer.ApplicationCore.Test
             var rule = new SearchConfig
             {
                 Direction = SearchDirection.Row,
-                InitialRowPostion = 0,
-                InitialColumnPosition = 0,
+                InitialRow = 1,
+                InitialColumn = "A",
                 RowSize = 3,
                 ColumnSize = 3,
                 RowIncrement = 1,
@@ -42,6 +42,21 @@ namespace DataFormer.ApplicationCore.Test
             actual = target.GetPosition(8, rule);
             Assert.Equal(2, actual.Row);
             Assert.Equal(2, actual.Column);
+        }
+
+        [Theory]
+        [InlineData("A", 0)]
+        [InlineData("M", 12)]
+        [InlineData("Z", 25)]
+        [InlineData("AA", 26)]
+        [InlineData("BM", 64)]
+        [InlineData("CZ", 103)]
+        [InlineData("IV", 255)]
+        public void GetColumnIndexCorrectly(string columnString, int columnsIndex)
+        {
+            var target = new MatrixDataManger();
+            var actual = target.GetColumnIndex(columnString);
+            Assert.Equal(columnsIndex, actual);
         }
     }
 }
