@@ -57,12 +57,11 @@ namespace DataFormer.ApplicationCore.BusinessLogics
             if (matcher.Success)
             {
                 var chars = columnString.ToCharArray();
-                var j = 0;
+                var j = 1;
                 foreach (var x in chars.Reverse())
                 {
-                    var coeff = (j == 0 ? 1 : (int)Math.Pow(26, j));
-                    columnIndex += ((int)x - 65 + 1) * coeff;
-                    j++;
+                    columnIndex += ((int)x - 65 + 1) * j;
+                    j *= 26;
                 }
             }
             return columnIndex;
