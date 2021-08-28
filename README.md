@@ -34,4 +34,5 @@
 * `time`: 時刻
 * `label`: テキスト
 * `boolean`: ブール値(trueもしくはfalse)
+* `formula`: セルに埋め込まれた数式
 * `comment`: セルに埋め込まれたコメント
