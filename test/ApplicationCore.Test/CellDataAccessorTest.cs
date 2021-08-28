@@ -137,6 +137,23 @@ namespace DataFormer.ApplicationCore.Test
         }
 
         [Fact]
+        public void ReturnFormulaCorrectly()
+        {
+            var expect = "1+1";
+
+            var book = new XSSFWorkbook();
+            var sheet = book.CreateSheet("title");
+            var row = sheet.CreateRow(0);
+            var readCell = row.CreateCell(0);
+            readCell.SetCellFormula(expect);
+            var writeCell = row.CreateCell(1);
+
+            var target = new CellDataAccessor();
+            target.ExtractCellValue(DataType.Formula, readCell, writeCell);
+            Assert.Equal(expect, writeCell.StringCellValue);
+        }
+
+        [Fact]
         public void RetrunCellCommentCorrectly()
         {
             var expect = "cell comment";
