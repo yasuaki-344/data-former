@@ -16,13 +16,13 @@ namespace DataFormer.ApplicationCore.Test
 
             var rule = new SearchBlock
             {
+                Direction = SearchDirection.Row,
                 RowSize = 3,
                 ColumnSize = 3,
                 ColumnSearch = new List<SearchConfig>
                 {
                     new SearchConfig
                     {
-                        Direction = SearchDirection.Row,
                         InitialRow = 1,
                         InitialColumn = "A",
                         RowIncrement = 1,

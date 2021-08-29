@@ -36,7 +36,7 @@ namespace DataFormer.ApplicationCore.BusinessLogics
                 throw new ArgumentException($"column name: {config.InitialColumn}");
             }
 
-            switch (config.Direction)
+            switch (block.Direction)
             {
                 case SearchDirection.Row:
                     {
