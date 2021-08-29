@@ -84,7 +84,7 @@ namespace DataFormer.ApplicationCore.Services
                 var columnIndex = 0;
                 foreach (var columnConfig in block.ColumnSearch)
                 {
-                    outputColumnData(inputBook, columnConfig, blockRowIndex, columnIndex, recordNumber, config.Headers[columnIndex].Type, sheet);
+                    outputColumnData(inputBook, block, columnConfig, blockRowIndex, columnIndex, recordNumber, config.Headers[columnIndex].Type, sheet);
                     columnIndex++;
                 }
                 blockRowIndex += recordNumber;
@@ -102,12 +102,12 @@ namespace DataFormer.ApplicationCore.Services
             }
         }
 
-        private void outputColumnData(IWorkbook inputBook, SearchConfig columnConfig, int blockRowIndex, int columnIndex, int recordNumber, DataType type, ISheet sheet)
+        private void outputColumnData(IWorkbook inputBook, SearchBlock block, SearchConfig columnConfig, int blockRowIndex, int columnIndex, int recordNumber, DataType type, ISheet sheet)
         {
             var inputSheet = inputBook.GetSheet(columnConfig.SheetName);
             for (var i = 0; i < recordNumber; i++)
             {
-                var position = _matrix.GetPosition(i, columnConfig);
+                var position = _matrix.GetPosition(i, block, columnConfig);
                 var readCell = _accessor.GetReadCell(inputSheet, position.Row, position.Column);
                 if (readCell != null)
                 {

@@ -20,15 +20,15 @@
       ],
       "search_blocks": [
         {
+          "row_size": 3,
+          "column_size": 6,
           "column_search": [
             {
               "sheet_name": "Sheet1",
-              "direction": "column",
+              "direction": "row",
               "initial_row": 1,
               "initial_column": "B",
-              "row_size": 1,
-              "column_size": 6,
-              "row_increment": 1,
+              "row_increment": 0,
               "column_increment": 1
             },
             {
@@ -36,18 +36,14 @@
               "direction": "row",
               "initial_row": 2,
               "initial_column": "A",
-              "row_size": 3,
-              "column_size": 1,
               "row_increment": 1,
-              "column_increment": 1
+              "column_increment": 0
             },
             {
               "sheet_name": "Sheet1",
               "direction": "row",
               "initial_row": 2,
               "initial_column": "B",
-              "row_size": 3,
-              "column_size": 6,
               "row_increment": 1,
               "column_increment": 1
             }
@@ -69,26 +65,24 @@
       ],
       "search_blocks": [
         {
+          "row_size": 3,
+          "column_size": 1,
           "column_search": [
             {
               "sheet_name": "Sheet1",
               "direction": "row",
               "initial_row": 2,
               "initial_column": "A",
-              "row_size": 3,
-              "column_size": 1,
               "row_increment": 1,
-              "column_increment": 1
+              "column_increment": 0
             },
             {
               "sheet_name": "Sheet1",
               "direction": "row",
               "initial_row": 2,
               "initial_column": "H",
-              "row_size": 3,
-              "column_size": 1,
               "row_increment": 1,
-              "column_increment": 1
+              "column_increment": 0
             }
           ]
         }
