@@ -81,7 +81,7 @@ namespace DataFormer.ApplicationCore.Services
             {
                 var recordNumber = _matrix.GetMaxDataNumber(block);
 
-                for (var i = 0; i <= block.ColumnSearch.Count; i++)
+                for (var i = 0; i < block.ColumnSearch.Count; i++)
                 {
                     outputColumnData(inputBook, block, blockRowIndex, i, recordNumber, config.Headers[i].Type, sheet);
                 }
