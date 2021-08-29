@@ -19,14 +19,16 @@ namespace DataFormer.ApplicationCore.BusinessLogics
         /// <inheritdoc/>
         public int GetMaxDataNumber(SearchBlock block)
         {
-            var maxDataNumber = block.ColumnSearch.Select(x => x.ColumnSize * x.RowSize).Max();
+            var maxDataNumber = block.ColumnSize * block.RowSize;
             return maxDataNumber;
         }
 
         /// <inheritdoc/>
-        public (int Row, int Column) GetPosition(int index, SearchConfig config)
+        public (int Row, int Column) GetPosition(int index, SearchBlock block, SearchConfig config)
         {
-            var modifiedIndex = index % (config.RowSize * config.ColumnSize);
+            var rowSize = block.RowSize;
+            var columnSize = block.ColumnSize;
+            var modifiedIndex = index % (rowSize * columnSize);
             var rowIndex = config.InitialRow - 1;
             var columnIndex = GetColumnIndex(config.InitialColumn);
             if (columnIndex < 0)
@@ -34,18 +36,18 @@ namespace DataFormer.ApplicationCore.BusinessLogics
                 throw new ArgumentException($"column name: {config.InitialColumn}");
             }
 
-            switch (config.Direction)
+            switch (block.Direction)
             {
                 case SearchDirection.Row:
                     {
-                        int quotient = Math.DivRem(modifiedIndex, config.RowSize, out int remainder);
+                        int quotient = Math.DivRem(modifiedIndex, rowSize, out int remainder);
                         var rowPosition = rowIndex + remainder * config.RowIncrement;
                         var columnPosition = columnIndex + quotient * config.ColumnIncrement;
                         return (rowPosition, columnPosition);
                     }
                 case SearchDirection.Column:
                     {
-                        int quotient = Math.DivRem(modifiedIndex, config.ColumnSize, out int remainder);
+                        int quotient = Math.DivRem(modifiedIndex, columnSize, out int remainder);
                         var rowPosition = rowIndex + quotient * config.RowIncrement;
                         var columnPosition = columnIndex + remainder * config.ColumnIncrement;
                         return (rowPosition, columnPosition);

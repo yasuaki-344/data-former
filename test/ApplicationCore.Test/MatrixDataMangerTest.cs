@@ -1,4 +1,6 @@
-﻿using DataFormer.ApplicationCore.BusinessLogics;
+﻿using System.Collections.Generic;
+using System.Linq;
+using DataFormer.ApplicationCore.BusinessLogics;
 using DataFormer.ApplicationCore.Entities;
 using DataFormer.ApplicationCore.ValueObjects;
 using Xunit;
@@ -12,34 +14,40 @@ namespace DataFormer.ApplicationCore.Test
         {
             var target = new MatrixDataManger();
 
-            var rule = new SearchConfig
+            var rule = new SearchBlock
             {
                 Direction = SearchDirection.Row,
-                InitialRow = 1,
-                InitialColumn = "A",
                 RowSize = 3,
                 ColumnSize = 3,
-                RowIncrement = 1,
-                ColumnIncrement = 1,
+                ColumnSearch = new List<SearchConfig>
+                {
+                    new SearchConfig
+                    {
+                        InitialRow = 1,
+                        InitialColumn = "A",
+                        RowIncrement = 1,
+                        ColumnIncrement = 1,
+                    }
+                }
             };
 
-            var actual = target.GetPosition(0, rule);
+            var actual = target.GetPosition(0, rule, rule.ColumnSearch.First());
             Assert.Equal(0, actual.Row);
             Assert.Equal(0, actual.Column);
 
-            actual = target.GetPosition(3, rule);
+            actual = target.GetPosition(3, rule, rule.ColumnSearch.First());
             Assert.Equal(0, actual.Row);
             Assert.Equal(1, actual.Column);
 
-            actual = target.GetPosition(4, rule);
+            actual = target.GetPosition(4, rule, rule.ColumnSearch.First());
             Assert.Equal(1, actual.Row);
             Assert.Equal(1, actual.Column);
 
-            actual = target.GetPosition(7, rule);
+            actual = target.GetPosition(7, rule, rule.ColumnSearch.First());
             Assert.Equal(1, actual.Row);
             Assert.Equal(2, actual.Column);
 
-            actual = target.GetPosition(8, rule);
+            actual = target.GetPosition(8, rule, rule.ColumnSearch.First());
             Assert.Equal(2, actual.Row);
             Assert.Equal(2, actual.Column);
         }
