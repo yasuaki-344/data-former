@@ -81,12 +81,11 @@ namespace DataFormer.ApplicationCore.Services
             {
                 var recordNumber = _matrix.GetMaxDataNumber(block);
 
-                var columnIndex = 0;
-                foreach (var columnConfig in block.ColumnSearch)
+                for (var i = 0; i <= block.ColumnSearch.Count; i++)
                 {
-                    outputColumnData(inputBook, block, columnConfig, blockRowIndex, columnIndex, recordNumber, config.Headers[columnIndex].Type, sheet);
-                    columnIndex++;
+                    outputColumnData(inputBook, block, blockRowIndex, i, recordNumber, config.Headers[i].Type, sheet);
                 }
+
                 blockRowIndex += recordNumber;
             }
         }
@@ -102,8 +101,9 @@ namespace DataFormer.ApplicationCore.Services
             }
         }
 
-        private void outputColumnData(IWorkbook inputBook, SearchBlock block, SearchConfig columnConfig, int blockRowIndex, int columnIndex, int recordNumber, DataType type, ISheet sheet)
+        private void outputColumnData(IWorkbook inputBook, SearchBlock block, int blockRowIndex, int columnIndex, int recordNumber, DataType type, ISheet sheet)
         {
+            var columnConfig = block.ColumnSearch[columnIndex];
             var inputSheet = inputBook.GetSheet(columnConfig.SheetName);
             for (var i = 0; i < recordNumber; i++)
             {
