@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "ms-dotnettools.csharp",
+    "k--kato.docomment",
+    "editorconfig.editorconfig",
+    "streetsidesoftware.code-spell-checker",
+    "jebbs.plantuml"
+  ]
+}
